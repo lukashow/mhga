@@ -160,10 +160,10 @@ function AchievementCard({ item, index }) {
     >
       {/* Gradient border */}
       <div
-        className={`relative p-[1px] rounded-xl overflow-hidden bg-gradient-to-r ${config.gradient} opacity-50 group-hover:opacity-100 transition-opacity duration-500`}
+        className={`relative p-[1px] rounded-xl overflow-hidden bg-gradient-to-r ${config.gradient} group-hover:shadow-lg group-hover:shadow-accent/20 transition-all duration-500`}
       >
         <div className="relative rounded-xl bg-terminal-surface p-5 group-hover:bg-terminal-bg transition-colors duration-300">
-          {/* Glow effect */}
+          {/* Glow effect on hover */}
           <div
             className={`absolute inset-0 rounded-xl ${config.glow} shadow-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
           />

@@ -106,13 +106,13 @@ function ProjectCard({ project, index }) {
       <article
         id="projects"
         ref={cardRef}
-        className="group relative opacity-0"
+        className="group h-full relative opacity-0"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Gradient border wrapper */}
-        <div className="relative p-[1px] rounded-xl overflow-hidden bg-gradient-to-br from-accent/50 via-terminal-border to-accent/50 group-hover:from-accent group-hover:via-accent/50 group-hover:to-accent transition-all duration-500">
-          <div className="relative rounded-xl overflow-hidden bg-terminal-surface">
+        <div className="relative h-full p-[1px] rounded-xl overflow-hidden bg-gradient-to-br from-accent/50 via-terminal-border to-accent/50 group-hover:from-accent group-hover:via-accent/50 group-hover:to-accent transition-all duration-500">
+          <div className="relative h-full flex flex-col rounded-xl overflow-hidden bg-terminal-surface">
             {/* Featured badge */}
             {project.featured && (
               <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1 bg-accent/90 backdrop-blur-sm rounded-full">
@@ -127,7 +127,7 @@ function ProjectCard({ project, index }) {
             )}
 
             {/* Project Image with overlay */}
-            <div className="relative h-56 md:h-64 overflow-hidden">
+            <div className="relative h-56 shrink-0 md:h-64 overflow-hidden">
               <img
                 src={project.image}
                 alt={project.title}
@@ -160,7 +160,7 @@ function ProjectCard({ project, index }) {
             </div>
 
             {/* Content */}
-            <div className="relative p-6">
+            <div className="relative p-6 h-full flex flex-col">
               {/* Title with animated underline */}
               <div className="mb-3">
                 <h3 className="text-xl md:text-2xl font-bold text-text-primary group-hover:text-accent transition-colors duration-300 inline-block">
@@ -193,10 +193,10 @@ function ProjectCard({ project, index }) {
               </div>
 
               {/* Actions */}
-              <div className="flex items-center gap-3 pt-4 border-t border-terminal-border">
+              <div className="flex items-center gap-3 mt-auto pt-4 border-t border-terminal-border">
                 <button
                   onClick={handleDemoClick}
-                  className="flex-1 py-3 bg-gradient-to-r from-accent to-accent-dim text-terminal-bg font-semibold rounded-lg flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-accent/25 transition-all duration-300 group/btn"
+                  className="terminal-button-solid flex-1 py-3 rounded-lg flex items-center justify-center gap-2 group/btn"
                 >
                   <Icon
                     icon="carbon:launch"
@@ -286,7 +286,7 @@ export default function ProjectsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 md:py-24 px-4 md:px-8 lg:px-16 overflow-hidden"
+      className="py-16 md:py-24 px-4 md:px-8 lg:px-16 overflow-hidden"
     >
       {/* Background effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/3 rounded-full blur-3xl" />
@@ -313,7 +313,7 @@ export default function ProjectsSection() {
       </div>
 
       {/* Projects Grid */}
-      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 z-10">
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}

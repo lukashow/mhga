@@ -8,7 +8,7 @@ const teamMembers = [
     name: "Melvin Chia",
     username: "melvinchia3636",
     handle: "@melvinchia3636",
-    description: "Full-stack architect & team lead",
+    description: "Learn, Develop, Evolve",
     role: "leader",
     avatar: "https://avatars.githubusercontent.com/u/64565584?v=4",
     skills: ["React", "Node.js", "TypeScript", "System Design"],
