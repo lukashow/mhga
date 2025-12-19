@@ -7,10 +7,10 @@ const matrixChars =
   "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
 
 function MatrixRain() {
-  const columns = 20;
+  const columns = 12;
 
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none hidden sm:block">
       {Array.from({ length: columns }).map((_, i) => (
         <div
           key={i}
@@ -114,7 +114,7 @@ export default function StarDialog({
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
       {/* Backdrop with blur */}
       <div
         className="absolute inset-0 bg-terminal-bg/90 backdrop-blur-md"
@@ -122,14 +122,17 @@ export default function StarDialog({
       />
 
       {/* Dialog */}
-      <div ref={dialogRef} className="relative max-w-md w-full mx-4 opacity-0">
+      <div
+        ref={dialogRef}
+        className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-md opacity-0"
+      >
         {/* Outer glow */}
         <div className="absolute -inset-1 bg-gradient-to-r from-accent via-accent-dim to-accent rounded-xl blur-lg opacity-50 animate-pulse" />
 
         {/* Card with gradient border */}
         <div className="relative p-[2px] rounded-xl overflow-hidden bg-gradient-to-br from-accent via-terminal-border to-accent">
-          <div className="relative rounded-xl bg-terminal-bg p-8 overflow-hidden">
-            {/* Matrix rain background */}
+          <div className="relative rounded-xl bg-terminal-bg p-4 sm:p-6 md:p-8 overflow-hidden">
+            {/* Matrix rain background - hidden on small screens */}
             <MatrixRain />
 
             {/* Scanlines */}
@@ -143,32 +146,32 @@ export default function StarDialog({
               />
             </div>
 
-            {/* Corner decorations */}
-            <div className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-accent/50" />
-            <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-accent/50" />
-            <div className="absolute bottom-3 left-3 w-6 h-6 border-l-2 border-b-2 border-accent/50" />
-            <div className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 border-accent/50" />
+            {/* Corner decorations - smaller on mobile */}
+            <div className="absolute top-2 left-2 sm:top-3 sm:left-3 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-t-2 border-accent/50" />
+            <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-t-2 border-accent/50" />
+            <div className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-b-2 border-accent/50" />
+            <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-b-2 border-accent/50" />
 
             {/* Close button */}
             <button
               onClick={handleClose}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full border border-terminal-border flex items-center justify-center text-text-muted hover:text-accent hover:border-accent hover:bg-accent/10 transition-all duration-300 z-10"
+              className="absolute top-2 right-2 sm:top-4 sm:right-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-terminal-border flex items-center justify-center text-text-muted hover:text-accent hover:border-accent hover:bg-accent/10 transition-all duration-300 z-10"
             >
-              <Icon icon="carbon:close" className="text-sm" />
+              <Icon icon="carbon:close" className="text-xs sm:text-sm" />
             </button>
 
             <div className="relative z-10 text-center">
               {/* Terminal header */}
-              <div className="dialog-title opacity-0 mb-6">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-terminal-surface/80 border border-terminal-border rounded-full mb-4">
-                  <span className="w-2 h-2 rounded-full bg-error" />
-                  <span className="w-2 h-2 rounded-full bg-warning" />
-                  <span className="w-2 h-2 rounded-full bg-accent" />
-                  <span className="ml-2 text-xs text-text-muted font-mono">
+              <div className="dialog-title opacity-0 mb-4 sm:mb-6">
+                <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-terminal-surface/80 border border-terminal-border rounded-full mb-3 sm:mb-4">
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-error" />
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-warning" />
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-accent" />
+                  <span className="ml-1.5 sm:ml-2 text-[10px] sm:text-xs text-text-muted font-mono">
                     redirect.sh
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-text-primary">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-text-primary break-all">
                   <span className="text-accent">./</span>
                   {projectName}
                 </h3>
@@ -178,14 +181,14 @@ export default function StarDialog({
                 /* Countdown */
                 <div className="dialog-content opacity-0">
                   {/* Command line style */}
-                  <div className="bg-terminal-surface/50 border border-terminal-border rounded-lg p-4 mb-6 text-left font-mono">
-                    <div className="flex items-center gap-2 text-xs mb-2">
+                  <div className="bg-terminal-surface/50 border border-terminal-border rounded-lg p-3 sm:p-4 mb-4 sm:mb-6 text-left font-mono overflow-x-auto">
+                    <div className="flex items-center gap-2 text-[10px] sm:text-xs mb-2 whitespace-nowrap">
                       <span className="text-accent">$</span>
                       <span className="text-text-secondary">
                         open --{buttonLabel.toLowerCase()} {projectName}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-xs">
+                    <div className="flex items-center gap-2 text-[10px] sm:text-xs whitespace-nowrap">
                       <span className="text-warning">&gt;</span>
                       <span className="text-text-muted">
                         Initiating connection...
@@ -195,22 +198,22 @@ export default function StarDialog({
                   </div>
 
                   {/* Countdown display */}
-                  <div className="mb-6">
-                    <div className="text-xs text-text-muted uppercase tracking-widest mb-3">
+                  <div className="mb-4 sm:mb-6">
+                    <div className="text-[10px] sm:text-xs text-text-muted uppercase tracking-widest mb-2 sm:mb-3">
                       Redirecting in
                     </div>
                     <div className="relative inline-block">
                       {/* Glow ring */}
                       <div className="absolute inset-0 rounded-full bg-accent/20 blur-xl animate-pulse" />
                       {/* Number */}
-                      <div className="relative w-24 h-24 rounded-full border-4 border-accent flex items-center justify-center bg-terminal-bg/80">
-                        <span className="text-5xl font-black text-accent terminal-glow">
+                      <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-3 sm:border-4 border-accent flex items-center justify-center bg-terminal-bg/80">
+                        <span className="text-3xl sm:text-4xl md:text-5xl font-black text-accent terminal-glow">
                           {countdown}
                         </span>
                       </div>
                       {/* Orbiting dot */}
                       <div
-                        className="absolute w-3 h-3 bg-accent rounded-full shadow-lg shadow-accent/50"
+                        className="absolute w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full shadow-lg shadow-accent/50"
                         style={{
                           top: "50%",
                           left: "50%",
@@ -222,7 +225,7 @@ export default function StarDialog({
                   </div>
 
                   {/* Nerdy message */}
-                  <div className="text-xs text-text-muted font-mono">
+                  <div className="text-[10px] sm:text-xs text-text-muted font-mono">
                     {isGithubButton ? (
                       <span>
                         <span className="text-accent">TIP:</span> Stars fuel our
@@ -240,27 +243,27 @@ export default function StarDialog({
                 /* Link opened prompt */
                 <div className="dialog-content opacity-0">
                   {/* Success animation */}
-                  <div className="relative mb-6">
+                  <div className="relative mb-4 sm:mb-6">
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-20 h-20 rounded-full bg-accent/20 animate-ping" />
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-accent/20 animate-ping" />
                     </div>
-                    <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-accent to-accent-dim flex items-center justify-center mx-auto">
+                    <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-accent to-accent-dim flex items-center justify-center mx-auto">
                       <Icon
                         icon="carbon:checkmark"
-                        className="text-4xl text-terminal-bg"
+                        className="text-2xl sm:text-3xl md:text-4xl text-terminal-bg"
                       />
                     </div>
                   </div>
 
                   {/* Success message */}
-                  <div className="bg-terminal-surface/50 border border-accent/30 rounded-lg p-4 mb-6 text-left font-mono">
-                    <div className="flex items-center gap-2 text-xs text-accent">
+                  <div className="bg-terminal-surface/50 border border-accent/30 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6 text-left font-mono">
+                    <div className="flex items-center gap-2 text-[10px] sm:text-xs text-accent">
                       <Icon icon="carbon:checkmark-filled" />
                       <span>Connection established successfully</span>
                     </div>
                   </div>
 
-                  <p className="text-sm text-text-secondary mb-6">
+                  <p className="text-xs sm:text-sm text-text-secondary mb-4 sm:mb-6">
                     {isGithubButton ? (
                       <span>
                         If the code speaks to you,{" "}
@@ -276,10 +279,10 @@ export default function StarDialog({
 
                   <button
                     onClick={handleClose}
-                    className="terminal-button-solid"
+                    className="terminal-button-solid w-full sm:w-auto"
                   >
-                    <span className="flex items-center gap-2">
-                      <Icon icon="carbon:close" className="size-5" />
+                    <span className="flex items-center justify-center gap-2">
+                      <Icon icon="carbon:close" className="size-4 sm:size-5" />
                       Terminate Session
                     </span>
                   </button>
