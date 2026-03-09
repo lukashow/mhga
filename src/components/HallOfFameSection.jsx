@@ -4,7 +4,27 @@ import { Icon } from "@iconify/react";
 
 // Achievements data grouped by year
 const achievements = [
-  {
+	{
+		year: 2026,
+		items: [
+		{
+			id: 1,
+			date: "19 Feb 2026",
+			name: "LavaPunk",
+			rank: "#3",
+			rankType: "winner",
+			project: "TimeForge",
+			participants: [
+			"melvinchia3636",
+			"lukashow",
+			"jiahuiiiii",
+			],
+			link: "https://timeforge.mhga.dev",
+			prize: "Grand Prize Winner",
+		}
+		],
+	},
+	{
     year: 2025,
     items: [
       {
@@ -23,58 +43,7 @@ const achievements = [
         ],
         link: "https://codeday.org",
         prize: "Grand Prize Winner",
-      },
-      {
-        id: 1,
-        date: "17 Dec 2025",
-        name: "CodeDay KL 2025",
-        rank: "#1",
-        rankType: "gold",
-        project: "LucyFit",
-        participants: [
-          "melvinchia3636",
-          "lukashow",
-          "jiahuiiiii",
-          "ctlm08",
-          "chenw517",
-        ],
-        link: "https://codeday.org",
-        prize: "Grand Prize Winner",
-      },
-      {
-        id: 1,
-        date: "17 Dec 2025",
-        name: "CodeDay KL 2025",
-        rank: "#1",
-        rankType: "gold",
-        project: "LucyFit",
-        participants: [
-          "melvinchia3636",
-          "lukashow",
-          "jiahuiiiii",
-          "ctlm08",
-          "chenw517",
-        ],
-        link: "https://codeday.org",
-        prize: "Grand Prize Winner",
-      },
-      {
-        id: 1,
-        date: "17 Dec 2025",
-        name: "CodeDay KL 2025",
-        rank: "#1",
-        rankType: "gold",
-        project: "LucyFit",
-        participants: [
-          "melvinchia3636",
-          "lukashow",
-          "jiahuiiiii",
-          "ctlm08",
-          "chenw517",
-        ],
-        link: "https://codeday.org",
-        prize: "Grand Prize Winner",
-      },
+      }
     ],
   },
 ];
